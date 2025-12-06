@@ -1,16 +1,15 @@
-from PIL import ImageFilter, ImageOps  # Импортируем фильтры и операции для обработки изображений
+from PIL import ImageFilter, ImageOps  # Импортируем фильтры и операции из Pillow
 
-class ImageProcessor:  # Определяем класс ImageProcessor для обработки изображений
+class ImageProcessor:  # Класс для обработки изображений
     def __init__(self, image):  # Конструктор принимает объект изображения
-        self.image = image  # Сохраняем изображение в атрибуте объекта
+        self.image = image  # Сохраняем изображение в атрибуте класса
 
-    def apply_sharpen(self):  # Метод для применения фильтра повышения резкости
+    def apply_sharpen(self):  # Метод применения фильтра повышения резкости
         sharpened = self.image.filter(ImageFilter.SHARPEN)  # Применяем фильтр SHARPEN
-        print("Фильтр SHARPEN применён")  # Сообщаем о применении фильтра
-        return sharpened  # Возвращаем обработанное изображение
+        print("Фильтр SHARPEN применён")  # Сообщаем пользователю
+        return sharpened  # Возвращаем результат
 
-    def add_border(self, border_size=15, color="black"):  # Метод для добавления рамки
+    def add_border(self, border_size=15, color="white"):  # Метод добавления рамки (по умолчанию белая)
         bordered = ImageOps.expand(self.image, border=border_size, fill=color)  # Добавляем рамку указанного размера и цвета
-        print(f"Добавлена рамка шириной {border_size}px")  # Сообщаем о добавлении рамки
-        return bordered  # Возвращаем изображение с рамкой
-
+        print(f"Добавлена {color} рамка шириной {border_size}px")  # Сообщаем пользователю
+        return bordered  # Возвращаем результат
